@@ -1,11 +1,8 @@
 <?php
 /*=========================
 本程式已完成
-之後應該會include這數據
+include的程式
 ==========================*/
-	$mysql_sign=mysql_connect("localhost","1234","1234","myDB");//登入SQL
-	$mysql_check=mysql_select_db("Daan-X",$mysql_sign);//選擇資料厙
-
 	$sum=0;//設定記數初始值
 	$read_SQL=mysql_query("SELECT * FROM stu_sgin");//尋找資料表
 	$row_id_01 = mysql_fetch_row($read_SQL);//搜索列
@@ -23,10 +20,8 @@
 				$number=$number+20;//迴圈增值
 			}
 		}
-	//print_r($array_unmber)."<br>";//測試用
 	if($array_unmber !=""){//當$array_unmber存在時
 		$last_number=max($array_unmber);//將陣列中最大值取出
 		mysql_query(" UPDATE stu_sgin SET id='$last_number'") ;//寫回SQL
 	}
-	mysql_close($mysql_sign);//登出SQL
 ?>
