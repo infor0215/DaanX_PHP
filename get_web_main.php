@@ -51,7 +51,7 @@ include的程式
 include的程式
 第二階段的程式
 ==========================*/
-	$http = array('http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%BE%C7%A5%CD%A8%C6%B0%C8&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%AC%A1%B0%CA%A7%D6%B3%F8&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchWay=%C4v%C1%C9&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchWay=%BAa%C5A%BA%5D&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchWay=%BC%FA%BE%C7%AA%F7%A4%BD%A7i&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%B5%F9%A5U%B8%C9%A7U%B4%EE%A7K&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchWay=no2&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%B7s%BE%C7%B4%C1%AD%AB%ADn%A4%BD%A7i&board=1');//抓取的網頁陣列表(第二階段)
+	$http = array('http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%BE%C7%A5%CD%A8%C6%B0%C8&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%AC%A1%B0%CA%A7%D6%B3%F8&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchWay=%C4v%C1%C9&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchWay=%BAa%C5A%BA%5D&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchWay=%BC%FA%BE%C7%AA%F7%A4%BD%A7i&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%B5%F9%A5U%B8%C9%A7U%B4%EE%A7K&board=1','http://ta.taivs.tp.edu.tw/news/news.asp?SearchRole=%BC%D0%C3D&SearchWord=&SearchWay=%B7s%BE%C7%B4%C1%AD%AB%ADn%A4%BD%A7i&board=1');//抓取的網頁陣列表(第二階段)
 		for ($n=0; $n <count($http) ; $n++) { //抓取網頁取網頁的陣列迴圈
 		$ch_stu_text=curl_init();//curl宣告(第二階段)
 		curl_setopt($ch_stu_text, CURLOPT_URL,"$http[$n]");//網頁來源宣告(第二階段)
@@ -70,15 +70,12 @@ include的程式
 					else if($n<6&&substr($web_main_top_title,4,40)==substr($cut_stu_text[$o],0,40)) {//當資料內容相同且對應輸出資料庫的網頁陣列數＄n＝4,5
 						mysql_query("INSERT INTO stu_main_stu_help (web_id,web_main_top_day,web_main_top_title,web_main_data,web_main_where,web_main_outside_link,web_main_can_read_time,web_main_link,web_main_file) VALUES ('$array_unmber[$A]','$web_main_top_day','$web_main_top_title','$web_main_data','$web_main_where','$web_main_outside_link','$web_main_can_read_time','$web_main_link','$web_main_file') ") ;//寫入資料庫
 					}
-					else if ($n==6&&substr($web_main_top_title,4,40)==substr($cut_stu_text[$o],0,40)) {//當資料內容相同且對應輸出資料庫的網頁陣列數＄n＝6
-						mysql_query("INSERT INTO stu_main_this_week (web_id,web_main_top_day,web_main_top_title,web_main_data,web_main_where,web_main_outside_link,web_main_can_read_time,web_main_link,web_main_file) VALUES ('$array_unmber[$A]','$web_main_top_day','$web_main_top_title','$web_main_data','$web_main_where','$web_main_outside_link','$web_main_can_read_time','$web_main_link','$web_main_file') ") ;//寫入資料庫
-					}
-					else if ($n==7&&substr($web_main_top_title,4,40)==substr($cut_stu_text[$o],0,40)) {//當資料內容相同且對應輸出資料庫的網頁陣列數＄n＝7
+					else if ($n==6&&substr($web_main_top_title,4,40)==substr($cut_stu_text[$o],0,40)) {//當資料內容相同且對應輸出資料庫的網頁陣列數＄n＝7
 						mysql_query("INSERT INTO stu_main_this_term (web_id,web_main_top_day,web_main_top_title,web_main_data,web_main_where,web_main_outside_link,web_main_can_read_time,web_main_link,web_main_file) VALUES ('$array_unmber[$A]','$web_main_top_day','$web_main_top_title','$web_main_data','$web_main_where','$web_main_outside_link','$web_main_can_read_time','$web_main_link','$web_main_file') ") ;//寫入資料庫
 					}
 			}
 	curl_close($ch_stu_text);//結束php_curl
 	}
-	mysql_query("INSERT INTO stu_main (web_id,web_main_top_day,web_main_top_title,web_main_data,web_main_where,web_main_outside_link,web_main_can_read_time,web_main_link,web_main_file) VALUES ('$array_unmber[$A]','$web_main_top_day','$web_main_top_title','$web_main_data','$web_main_where','$web_main_outside_link','$web_main_can_read_time','$web_main_link','$web_main_file') ") ;//寫入資料庫（總數據）
+	mysql_query("INSERT INTO stu_main_this_week (web_id,web_main_top_day,web_main_top_title,web_main_data,web_main_where,web_main_outside_link,web_main_can_read_time,web_main_link,web_main_file) VALUES ('$array_unmber[$A]','$web_main_top_day','$web_main_top_title','$web_main_data','$web_main_where','$web_main_outside_link','$web_main_can_read_time','$web_main_link','$web_main_file') ") ;//寫入資料庫（總數據）
 	curl_close($ch);//結束php_curl(第一階段)
 ?>

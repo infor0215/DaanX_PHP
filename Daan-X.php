@@ -3,6 +3,7 @@
 本程式已完成
 Daan-X的主程式
 ==========================*/
+	$time_start = microtime(true);
 	$mysql_sign=mysql_connect("localhost","1234","1234","myDB");//登入SQL
 	$mysql_check=mysql_select_db("Daan-X",$mysql_sign);//選擇資料厙
 	mysql_query("SET NAMES utf8");//資料庫編碼設定
@@ -14,4 +15,7 @@ Daan-X的主程式
 			}
 		}
 	mysql_close($mysql_sign);//登出SQL
+	$time_end = microtime(true);
+	$time = $time_end - $time_start;
+	echo $time;
 ?>
