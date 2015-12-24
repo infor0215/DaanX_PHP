@@ -31,10 +31,12 @@ include的程式
 			$Address_end02=strpos($web_main_link_from[$m]," target",0);//抓字尾
 			$Address_long02=$Address_end02-$Address_frist02;//抓字首和字尾的差;
 			$web_main_link_output=substr($web_main_link_from[$m],$Address_frist02+6,$Address_long02-7);//抓超連結文字
-				if($m>1){
-					$web_main_link_sum=$web_main_link_sum."http://ta.taivs.tp.edu.tw/news/$web_main_link_output"."|||";//附件轉成一串字串
-					$web_main_link=$web_main_link_sum;//附件輸出
-				}
+			$web_main_link_sum[]="http://ta.taivs.tp.edu.tw/news/$web_main_link_output"."|||";//附件轉成一陣列
+		}
+		if (count($web_main_link_sum)>1) {//分析陣列
+			for ($x=1; $x < count($web_main_link_sum); $x++) {//忽略第一個空值
+				$web_main_link=$web_main_link.$web_main_link_sum[$x];//輸出切割網址
+			}
 		}
 	$web_main_file_from = $do_pq->find('p[align="center"]')->html();//抓取圖片<p></p>+抓圖的html的code
 	$Address_frist=strpos($web_main_file_from,"KEY=",0);//抓字首
