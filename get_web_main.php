@@ -41,11 +41,11 @@ include的程式
 	$web_main_file_from = $do_pq->find('p[align="center"]')->html();//抓取圖片<p></p>+抓圖的html的code
 	$web_main_file="";//初始變數
 	$Address_frist=strpos($web_main_file_from,"KEY=",0);//抓字首
-	$piv=array("jpg","gif","png","jpeg","bmp");
-		for ($r=0; $r <5 ; $r++) {
+	$piv=array("jpg","gif","png","jpeg","bmp");//圖形種類
+		for ($r=0; $r <5 ; $r++) {//圖形種類判斷
 			$Address_end=strpos($web_main_file_from,$piv[$r],0);//抓字尾
 				if ($Address_end >0) {
-					break;
+					break;//抓到時
 				}
 		}
 	$Address_long=$Address_end-$Address_frist;//抓字首和字尾的差
